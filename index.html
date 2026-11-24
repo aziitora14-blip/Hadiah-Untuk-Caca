@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Caca ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+    background: #1b1018;
+}
+
+/* BACKGROUND FOTO */
+
+.bg-blur {
+    position: fixed;
+    inset: -20px;
+    background-image: url("caca.png");
+    background-size: cover;
+    background-position: center;
+    filter: blur(12px) brightness(0.4);
+    transform: scale(1.1);
+    z-index: -2;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 5, 25, 0.65),
+        rgba(0, 0, 0, 0.55)
+    );
+    z-index: -1;
+}
+
+/* HALAMAN UTAMA */
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 18px;
+    text-align: center;
+}
+
+.photo {
+    width: 220px;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 18px;
+    filter: blur(1px);
+    box-shadow: 0 0 30px rgba(255, 160, 200, 0.3);
+    margin-bottom: 25px;
+}
+
+.badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #ffd6e7;
+    text-shadow: 0 0 15px rgba(255, 150, 190, 0.5);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.name {
+    font-size: 27px;
+    color: #ffb9d4;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.description {
+    max-width: 330px;
+    line-height: 1.7;
+    font-size: 14px;
+    color: #f8eaf0;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.main-btn {
+    padding: 14px 30px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #ff8fbd, #ff5e9c);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 5px 20px rgba(255, 80, 150, 0.4);
+    transition: 0.3s;
+}
+
+.main-btn:active {
+    transform: scale(0.95);
+}
+
+/* TOMBOL MUSIK */
+
+.music-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 11px 15px;
+    border-radius: 25px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+/* HALAMAN HADIAH */
+
+.gift-screen {
+    display: none;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.gift-screen h2 {
+    color: #ffd6e7;
+    margin-bottom: 30px;
+}
+
+/* AMPLOP */
+
+.envelope {
+    position: relative;
+    width: 230px;
+    height: 150px;
+    background: #ff8fb9;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: melayang 2s infinite ease-in-out;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 115px solid transparent;
+    border-right: 115px solid transparent;
+    border-top: 90px solid #ffc0d7;
+    transform-origin: top;
+    z-index: 2;
+}
+
+.envelope::after {
+    content: "❤️";
+    position: absolute;
+    top: 65px;
+    left: 95px;
+    font-size: 35px;
+    z-index: 3;
+}
+
+@keyframes melayang {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.tap-text {
+    margin-top: 35px;
+    color: #ffe2ed;
+    font-size: 14px;
+}
+
+/* MODAL SURAT */
+
+.letter-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.letter {
+    width: 100%;
+    max-width: 430px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: linear-gradient(145deg, #fff0f5, #ffe0eb);
+    color: #65364b;
+    border-radius: 20px;
+    padding: 27px 23px;
+    box-shadow: 0 0 35px rgba(255, 130, 180, 0.3);
+    animation: muncul 0.6s ease;
+}
+
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.letter h2 {
+    text-align: center;
+    color: #d94e87;
+    margin-bottom: 20px;
+}
+
+.letter-content {
+    font-size: 14px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    min-height: 180px;
+}
+
+.signature {
+    display: none;
+    text-align: right;
+    margin-top: 22px;
+    font-weight: bold;
+    color: #d94e87;
+    line-height: 1.8;
+}
+
+.secret-btn {
+    display: none;
+    margin-top: 23px;
+    width: 100%;
+    padding: 13px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff8fbd, #e94e91);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.close-btn {
+    display: block;
+    margin: 18px auto 0;
+    background: transparent;
+    color: #a34c70;
+    font-size: 13px;
+}
+
+/* PESAN RAHASIA */
+
+.secret-message {
+    display: none;
+    margin-top: 20px;
+    padding: 17px;
+    border-radius: 15px;
+    background: rgba(255, 180, 210, 0.4);
+    text-align: center;
+    line-height: 1.8;
+    animation: muncul 0.7s ease;
+}
+
+.secret-message h3 {
+    color: #d94e87;
+    margin-bottom: 10px;
+}
+
+/* HUJAN HATI */
+
+.heart-fall {
+    position: fixed;
+    top: -40px;
+    z-index: 9999;
+    pointer-events: none;
+    animation: jatuh linear forwards;
+}
+
+@keyframes jatuh {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #ffd6e7;
+    opacity: 0.8;
+}
+
+@media (max-width: 380px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    .photo {
+        width: 190px;
+        height: 245px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-blur"></div>
+<div class="overlay"></div>
+
+<audio id="music" src="musik.mp3" loop></audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicButton">
+    🎵 Musik OFF
+</button>
+
+<!-- HALAMAN PEMBUKA -->
+
+<div class="container" id="home">
+
+    <img src="caca.png" class="photo" alt="Foto Caca">
+
+    <div class="badge">25 NOVEMBER 2026</div>
+
+    <h1>Happy Teacher's Day</h1>
+
+    <div class="subtitle">A little appreciation for</div>
+
+    <div class="name">Dear Caca ❤️</div>
+
+    <div class="description">
+        Untuk seseorang yang mungkin sering capek,
+        sering menghadapi banyak tingkah murid,
+        tapi tetap berusaha memberikan yang terbaik.
+        Hari ini ada sesuatu kecil yang ingin aku kasih buat kamu.
+    </div>
+
+    <button class="main-btn" onclick="bukaHadiah()">
+        Buka Hadiahmu 🎁
+    </button>
+
+    <div class="footer">
+        Made with love, just for you ❤️
+    </div>
+
+</div>
+
+<!-- HALAMAN AMPLOP -->
+
+<div class="gift-screen" id="gift">
+
+    <h2>Hei, Caca! Ada surat buat kamu 💌</h2>
+
+    <div class="envelope" onclick="bukaSurat()"></div>
+
+    <div class="tap-text">
+        Klik amplopnya untuk membuka surat ❤️
+    </div>
+
+</div>
+
+<!-- SURAT -->
+
+<div class="letter-screen" id="letterScreen">
+
+    <div class="letter" id="letterBox">
+
+        <h2>Untuk Caca ❤️</h2>
+
+        <div class="letter-content" id="letterContent"></div>
+
+        <div class="signature" id="signature">
+            Sekali lagi, Selamat Hari Guru! ❤️<br>
+            Dari seseorang yang sedang berusaha
+            menjadi murid teladan kamu.
+        </div>
+
+        <button class="secret-btn" id="secretBtn" onclick="kejutan()">
+            Pssttt... Ada pesan lagi 🤫❤️
+        </button>
+
+        <div class="secret-message" id="secretMessage">
+
+            <h3>EH, CACA! 😭❤️</h3>
+
+            Nahhh gitu dong, senyum dulu!
+
+            Jangan galak-galak terus,
+            nanti aku takut kalau mau ngajak jajan.
+            WKWKWK 😭
+
+            <br><br>
+
+            Tapi serius, semoga kamu selalu diberi
+            kesehatan, kebahagiaan, dan kekuatan
+            buat menjalani hari-harimu.
+
+            <br><br>
+
+            Jangan lupa istirahat juga, Bu Guru.
+            Kamu juga berhak bahagia dan diperhatikan.
+
+            <br><br>
+
+            <b>Semangat terus, Bu Guru Caca! ❤️</b>
+
+        </div>
+
+        <button class="close-btn" onclick="tutupSurat()">
+            Tutup surat
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+/* MUSIK */
+
+const music = document.getElementById("music");
+let musicPlaying = false;
+
+function mulaiMusik() {
+    music.play().then(() => {
+        musicPlaying = true;
+        document.getElementById("musicButton").innerHTML =
+            "🎵 Musik ON";
+    }).catch(() => {
+        document.getElementById("musicButton").innerHTML =
+            "🎵 Putar Musik";
+    });
+}
+
+function toggleMusic() {
+    if (music.paused) {
+        mulaiMusik();
+    } else {
+        music.pause();
+        musicPlaying = false;
+        document.getElementById("musicButton").innerHTML =
+            "🎵 Musik OFF";
+    }
+}
+
+/* BUKA HADIAH */
+
+function bukaHadiah() {
+    mulaiMusik();
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("gift").style.display = "flex";
+}
+
+/* BUKA SURAT */
+
+const isiSurat = `Hai Caca...
+
+Selamat Hari Guru! ❤️
+
+Mungkin hari ini sama seperti hari-hari biasanya buat kamu. Mengajar, menghadapi berbagai macam tingkah murid, menyelesaikan banyak hal, dan mungkin sesekali merasa capek.
+
+Tapi aku harap kamu tahu kalau apa yang kamu lakukan itu berarti.
+
+Terima kasih sudah menjadi seseorang yang mau berbagi ilmu, waktu, dan kesabaran. Semoga semua kebaikan yang kamu berikan kepada orang lain bisa kembali kepadamu dalam bentuk kebahagiaan yang jauh lebih besar.
+
+Jangan terlalu keras sama diri sendiri, ya. Kalau capek, istirahat. Kalau lagi banyak pikiran, jangan lupa kasih waktu buat diri sendiri.
+
+Dan satu lagi...
+
+Semoga kesabaran kamu sebagai guru tetap kuat. Apalagi kalau menghadapi murid yang banyak tingkahnya. WKWKWK 😭
+
+Aku juga harus belajar jadi murid yang baik nih, biar nggak sering kena omel Bu Guru Caca.
+
+Pokoknya, tetap jadi Caca yang aku kenal. Tetap semangat, tetap ceria, dan jangan lupa bahagia.
+
+Kamu pantas mendapatkan banyak hal baik. ❤️`;
+
+let sudahMengetik = false;
+
+function bukaSurat() {
+    document.getElementById("letterScreen").style.display = "flex";
+
+    if (sudahMengetik) return;
+
+    sudahMengetik = true;
+
+    const target = document.getElementById("letterContent");
+    let i = 0;
+
+    function mengetik() {
+        if (i < isiSurat.length) {
+            target.textContent += isiSurat.charAt(i);
+            i++;
+
+            document.getElementById("letterBox").scrollTop =
+                document.getElementById("letterBox").scrollHeight;
+
+            setTimeout(mengetik, 35);
+        } else {
+            document.getElementById("signature").style.display = "block";
+            document.getElementById("secretBtn").style.display = "block";
+        }
+    }
+
+    mengetik();
+}
+
+/* PESAN RAHASIA */
+
+function kejutan() {
+    const secret = document.getElementById("secretMessage");
+
+    secret.style.display = "block";
+
+    hujanHati();
+
+    document.getElementById("letterBox").scrollTop =
+        document.getElementById("letterBox").scrollHeight;
+}
+
+/* HUJAN HATI */
+
+function hujanHati() {
+    const hearts = ["❤️", "💕", "💗", "💖", "💘", "💝"];
+
+    for (let i = 0; i < 45; i++) {
+
+        setTimeout(() => {
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart-fall";
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + "px";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6500);
+
+        }, i * 80);
+    }
+}
+
+/* TUTUP SURAT */
+
+function tutupSurat() {
+    document.getElementById("letterScreen").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
